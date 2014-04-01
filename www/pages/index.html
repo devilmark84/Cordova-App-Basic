@@ -1,0 +1,30 @@
+<div class="page_index">
+    <div class="cab-page-header">
+        header
+    </div>
+    <div class="cab-page-main">
+        INDEX CAB
+        <button id="subpage">VAI</button>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec tincidunt dui, in ultricies ante. Mauris tempor leo nisl, a venenatis nisi gravida id. Nullam vel lorem pharetra, interdum tortor ut, gravida eros. Pellentesque elementum rhoncus enim, quis pretium nunc ultricies vitae. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec in eros a eros elementum pharetra non vitae nulla. In feugiat felis facilisis sapien vestibulum tincidunt. Vivamus ut nisl purus.</p>
+        <p>Etiam elementum nisi molestie aliquam pharetra. Vivamus urna lacus, semper vel porta nec, faucibus sit amet nibh. Sed nec eros odio. Nulla posuere metus sem, congue adipiscing orci hendrerit sed. Proin fermentum mauris eget nunc dignissim mollis. Nam sit amet ultricies metus. In scelerisque rutrum justo, eu aliquam tortor sodales ac. Sed condimentum mattis ante, et hendrerit ante malesuada id. Nam malesuada, ante id vehicula varius, ligula libero dignissim est, eget vehicula est arcu id turpis. Curabitur commodo tellus urna, eget sodales ipsum eleifend vitae. Phasellus eu erat ut mauris commodo interdum. Quisque posuere est eget mattis condimentum. Cras non mollis nisl. Sed sodales vel velit vitae placerat. In ornare nisl id turpis tincidunt mollis. Curabitur dapibus volutpat viverra.</p>
+        <p>Curabitur vestibulum luctus massa, in volutpat leo fringilla ut. Integer et risus pellentesque, auctor urna eu, viverra dui. Cras massa lectus, tempus nec feugiat quis, aliquam sed lectus. Nullam laoreet, tellus sed consequat lacinia, est augue tincidunt nunc, luctus tincidunt mi dui quis elit. In volutpat hendrerit ipsum, non tincidunt nisi dignissim ultricies. Nam molestie, diam id eleifend molestie, sapien nulla cursus quam, at pellentesque quam ligula ut augue. Ut eget lectus rutrum ante ullamcorper interdum. Pellentesque interdum nisl cursus sapien luctus lobortis.</p>
+    </div>
+    <div class="cab-page-footer">
+        footer
+    </div>
+</div>
+<script type="text/javascript">
+    var $page = App.getActivePage();
+    $page.on("cab.backbutton", function()
+    {
+        console.log("bottone back");
+    }).on("cab.show", function()
+    {
+        console.log("show");
+    });
+    
+    $("#subpage").click(function()
+    {
+        App.changePage("pages/subpage.html");
+    });
+</script>
