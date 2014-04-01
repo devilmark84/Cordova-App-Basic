@@ -1,0 +1,241 @@
+$default_rounded_amount: 20px;
+
+// Round corner at position by amount.
+@mixin round-corner($position, $amount: $default_rounded_amount) {
+  border-#{$position}-radius: $amount;
+  -webkit-border-#{$position}-radius: $amount;
+}
+@mixin round-corner-mozilla($position, $amount: $default_rounded_amount) {
+  -moz-border-radius-#{$position}: $amount;
+}
+
+// Round left corners by amount
+@mixin round-left-corners($amount: $default_rounded_amount) {
+  @include round-corner("top-left", $amount);
+  @include round-corner("bottom-left", $amount);
+  @include round-corner-mozilla("topleft", $amount);
+  @include round-corner-mozilla("bottomleft", $amount);
+}
+
+// Round right corners by amount
+@mixin round-right-corners($amount: $default_rounded_amount) {
+  @include round-corner("top-right", $amount);
+  @include round-corner("bottom-right", $amount);
+  @include round-corner-mozilla("topright", $amount);
+  @include round-corner-mozilla("bottomright", $amount);
+}
+
+// Round top corners by amount
+@mixin round-top-corners($amount: 5px) {
+  @include round-corner("top-left", $amount);
+  @include round-corner("top-right", $amount);
+  @include round-corner-mozilla("topleft", $amount);
+  @include round-corner-mozilla("topright", $amount);
+}
+
+// Round bottom corners by amount
+@mixin round-bottom-corners($amount: $default_rounded_amount) {
+  @include round-corner("bottom-left", $amount);
+  @include round-corner("bottom-right", $amount);
+  @include round-corner-mozilla("bottomleft", $amount);
+  @include round-corner-mozilla("bottomright", $amount);
+}
+
+// Round all corners by amount
+@mixin round-corners($amount: $default_rounded_amount) {
+  border-radius: $amount;
+  -moz-border-radius: $amount;
+  -webkit-border-radius: $amount;
+}
+
+// Round bottom-side corners (either left or right)
+@mixin round-any-corner($vert, $side, $amount: $default_rounded_amount) {
+  @include round-corner("#{$vert}-#{$side}", $amount);
+  @include round-corner-mozilla("#{$vert}#{$side}", $amount);
+}
+
+// Box sizing
+@mixin box-sizing($value:border-box) {
+  -moz-box-sizing: $value;
+  -webkit-box-sizing: $value;
+  box-sizing: $value;
+}
+
+// Box shadow
+// Inset and outset
+@mixin box-shadow($top_inset, $left_inset, $blur_inset, $spread_inset, $color_inset, $top, $left, $blur, $spread, $color) {
+  -webkit-box-shadow: $top_inset $left_inset $blur_inset $spread_inset $color_inset inset, $top $left $blur $spread $color;
+  -moz-box-shadow: $top_inset $left_inset $blur_inset $spread_inset $color_inset inset, $top $left $blur $spread $color;
+  box-shadow: $top_inset $left_inset $blur_inset $spread_inset $color_inset inset, $top $left $blur $spread $color;
+}
+// Inset
+@mixin box-shadow-inset($top, $left, $blur, $spread, $color) {
+  -webkit-box-shadow: $top $left $blur $spread $color inset;
+  -moz-box-shadow: $top $left $blur $spread $color inset;
+  box-shadow: $top $left $blur $spread $color inset;
+}
+// Outset
+@mixin box-shadow-outset($top, $left, $blur, $spread, $color) {
+  -webkit-box-shadow: $top $left $blur $spread $color;
+  -moz-box-shadow: $top $left $blur $spread $color;
+  box-shadow: $top $left $blur $spread $color;
+}
+
+// Box shadow none
+@mixin box-shadow-none() {
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+@function black($opacity) {
+    @return rgba(0,0,0,$opacity)
+}
+@function white($opacity) {
+    @return rgba(255,255,255,$opacity)
+}
+
+// Box emboss (http://sachagreif.com/useful-sass-mixins/)
+@mixin box-emboss($opacity, $opacity2) {
+  box-shadow:white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
+}
+
+@mixin opacity($value: 0.5) {
+  opacity: $value;
+  -webkit-opacity: $value;
+  -moz-opacity: $value;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" $value * 100 ")";
+  filter: alpha(opacity= $value * 100 );
+  zoom: 1;
+}
+
+// Transition
+@mixin transition($property, $duration, $delay: 0, $function: ease) {
+    -webkit-transition: $property $duration $delay $function;
+    -moz-transition: $property $duration $delay $function;
+    -ms-transition: $property $duration $delay $function;
+    -o-transition: $property $duration $delay $function;
+    transition: $property $duration $delay $function;
+}
+
+@mixin transition-delay($duration) {
+    -webkit-transition-delay: $duration;
+    transition-delay: $duration;
+}
+
+@mixin transition-transform($duration, $delay, $function: ease) {
+    -webkit-transition: -webkit-transform $duration $delay $function;
+    -moz-transition: -moz-transform $duration $delay $function;
+    -o-transition: -o-transform $duration $delay $function;
+    transition: transform $duration $delay $function;
+}
+
+
+@mixin transition-none() {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+// Transform
+@mixin transform-origin($x_axis: 50%, $y_axis: 50%, $z_axis: 0) {
+    transform-origin: $x_axis $y_axis $z_axis;
+    -ms-transform-origin: $x_axis $y_axis $z_axis;
+    -webkit-transform-origin: $x_axis $y_axis $z_axis;
+}
+@mixin transform($scale: 1, $rotate: 0, $translateX: 0, $translateY: 0, $skewX: 0, $skewY: 0) {
+    -moz-transform: scale($scale) rotate($rotate) translateX($translateX) translateY($translateY) skewX($skewX) skewY($skewY);
+    -webkit-transform: scale($scale) rotate($rotate) translateX($translateX) translateY($translateY) skewX($skewX) skewY($skewY);
+    -o-transform: scale($scale) rotate($rotate) translateX($translateX) translateY($translateY) skewX($skewX) skewY($skewY);
+    -ms-transform: scale($scale) rotate($rotate) translateX($translateX) translateY($translateY) skewX($skewX) skewY($skewY);
+    transform: scale($scale) rotate($rotate) translateX($translateX) translateY($translateY) skewX($skewX) skewY($skewY);
+}
+@mixin transform-translate3d($x, $y, $z) {
+    -moz-transform: translate3d($x, $y, $z);
+    -webkit-transform: translate3d($x, $y, $z);
+    -o-transform: translate3d($x, $y, $z);
+    -ms-transform: translate3d($x, $y, $z);
+    transform: translate3d($x, $y, $z);
+}
+
+// User select
+@mixin user-select($value) {
+    -moz-user-select: $value;
+    -webkit-user-select: $value;
+    -khtml-user-select: $value;
+    user-select: $value;
+}
+@mixin user-select-none() {
+    -moz-user-select: none;
+    -webkit-user-select:none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
+// Background size
+@mixin background-size($value) {
+    -moz-background-size: $value;
+    -webkit-background-size:$value;
+    -o-background-size: $value;
+    background-size: $value;
+}
+
+// Font face
+@mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal, $font-stretch : normal) {
+    @font-face {
+        font-family: '#{$font-family}';
+        src: url(font-path('#{$font-filename}.eot'));
+        src: url(font-path('#{$font-filename}.eot?#iefix')) format('embedded-opentype'),
+        url(font-path('#{$font-filename}.woff')) format('woff'),
+        url(font-path('#{$font-filename}.ttf')) format('truetype'),
+        url(font-path('#{$font-filename}.svg##{$font-family}')) format('svg');
+        font-weight: $font-weight;
+        font-style: $font-style;
+        font-stretch: $font-stretch;
+    }
+}
+
+// Linear gradient
+@mixin vertical-gradient($start, $end) {
+    $start_hex: rgb(red($start), green($start), blue($start));
+    $end_hex: rgb(red($end), green($end), blue($end));
+    background: $start_hex; /* Old browsers */
+    background: -moz-linear-gradient(top, $start 0%, $end 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$start), color-stop(100%,$end)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $start 0%,$end 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $start 0%,$end 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $start 0%,$end 100%); /* IE10+ */
+    background: linear-gradient(to bottom, $start 0%,$end 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start_hex}', endColorstr='#{$end_hex}',GradientType=0 ); /* IE6-9 */
+}
+// Radial gradient
+@mixin radial-gradient($start, $end) {
+    $start_hex: rgb(red($start), green($start), blue($start));
+    $end_hex: rgb(red($end), green($end), blue($end));
+    background: $start_hex; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, $start 0%, $end 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,$start), color-stop(100%,$end)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, $start 0%, $end 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, $start 0%, $end 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, $start 0%, $end 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center, $start 0%, $end 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start_hex}', endColorstr='#{$end_hex}',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+// Clearfix
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}

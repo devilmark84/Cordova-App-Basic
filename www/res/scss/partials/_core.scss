@@ -1,0 +1,158 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-tap-highlight-color: transparent;   /* For some Androids */
+    @include box-sizing();
+}
+
+a {
+    color: #000;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    border: 0;
+    outline: 0;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    -webkit-backface-visibility: hidden;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    font-family: $CAB-FONT-FAMILY;
+    font-size: $CAB-FONT_SIZE;
+    font-style: normal;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+// Application wrapper
+#cab-wrapper {
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+// Pages wrapper
+#cab-pages-wrapper {
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+// Pages container
+#cab-pages-container {
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    > .cab-page {
+        -webkit-backface-visibility: hidden;
+        -webkit-overflow-scrolling: touch;
+        -webkit-perspective: 1000;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        transition: opacity 200ms ease;
+        width: 100%;
+        @include transform-translate3d(0, 0, 0);
+        &.cab-active-page {
+            height: 100%;
+            @include opacity(1);
+        }
+        > div {
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+    }
+}
+
+// Loading screen
+#cab-loading {
+    background: rgba(0,0,0,.8);
+    color: #fff;
+    height: 0;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+    @include opacity(0);
+    @include transition(opacity, 300ms);
+    .cab-loading-i {
+        display: table;
+        height: 100%;
+        width: 100%;
+        .cab-loading-c {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+            .cab-loading-img {
+                background: url('../img/loading.gif') no-repeat 0 0;
+                background-size: 32px 32px;
+                display: inline-block;
+                height: 32px;
+                width: 32px;
+            }
+            .cab-loading-label {
+                display: block;
+                margin: auto;
+            }
+        }
+    }
+    &.cab-loading-shown {
+        bottom: 0;
+        height: auto;
+        @include opacity(1);
+    }
+}
+
+.cab-page-header {
+    background: lightcyan;
+    height: 48px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+.cab-page-main {
+    bottom: 0;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+.cab-page-footer {
+    background: lime;
+    bottom: 0;
+    height: 48px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
